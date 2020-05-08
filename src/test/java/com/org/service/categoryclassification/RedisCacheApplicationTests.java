@@ -4,10 +4,11 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RedisCacheApplicationTests {
+public class RedisCacheApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+		System.out.println("This is a dummy test...");
 	}
 
 }
