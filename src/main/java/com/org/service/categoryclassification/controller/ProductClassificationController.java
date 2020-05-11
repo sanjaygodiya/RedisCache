@@ -28,7 +28,7 @@ public class ProductClassificationController {
 	@RequestMapping(value = { "/getproductclassification" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ProductClassification getProductClassification(@RequestParam("prodref") String prodref) {
-		ProductClassification response = new ProductClassification(null, null, null, null);
+		ProductClassification response = new ProductClassification();
 		String referencekey = "null";
 		String name = "null";
 		String tagDescription = "null";

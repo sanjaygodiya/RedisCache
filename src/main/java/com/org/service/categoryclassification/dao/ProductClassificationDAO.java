@@ -25,9 +25,8 @@ public class ProductClassificationDAO {
 				+ prodref + "'";
 		logger.debug("Product Classification SQL : " + productClassSql);
 		try {
-			this.productClassificationList = (List<ProductClassification>) this.jdbcTemplate.query(productClassSql,
-					(rs, rowNum) -> new ProductClassification(rs.getString(1), rs.getString(2), rs.getString(3),
-							rs.getString(4)));
+			this.productClassificationList = this.jdbcTemplate.query(productClassSql,
+					(rs, rowNum) -> new ProductClassification(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4)));
 		} catch (BadSqlGrammarException e) {
 			logger.info("DataAccessException->" + e.getMessage() + ",SQL Code->"
 					+ ((SQLException) e.getCause()).getErrorCode());

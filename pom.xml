@@ -61,6 +61,11 @@
 			<artifactId>jasypt-spring-boot-starter</artifactId>
 			<version>2.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- Redis Cache dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
