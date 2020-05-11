@@ -1,6 +1,12 @@
 package com.org.service.categoryclassification.model;
 
-public class ProductClassification {
+import java.io.Serializable;
+
+public class ProductClassification implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String referencekey;
 	private String name;
 	private String tagdescription;

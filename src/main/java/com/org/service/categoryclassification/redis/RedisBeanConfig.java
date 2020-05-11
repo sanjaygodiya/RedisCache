@@ -24,5 +24,4 @@ public class RedisBeanConfig {
         return template;
     }
 
-
 }

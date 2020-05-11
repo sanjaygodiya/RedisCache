@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.org.service.categoryclassification.model.ProductClassification;
-import com.org.service.categoryclassification.model.ProductClassificationResponse;
 import com.org.service.categoryclassification.redis.RedisProductRepository;
 import com.org.service.categoryclassification.service.ProductClassificationService;
 
@@ -28,8 +27,8 @@ public class ProductClassificationController {
 
 	@RequestMapping(value = { "/getproductclassification" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ProductClassificationResponse getProductClassification(@RequestParam("prodref") String prodref) {
-		ProductClassificationResponse response = new ProductClassificationResponse();
+	public ProductClassification getProductClassification(@RequestParam("prodref") String prodref) {
+		ProductClassification response = new ProductClassification(null, null, null, null);
 		String referencekey = "null";
 		String name = "null";
 		String tagDescription = "null";
