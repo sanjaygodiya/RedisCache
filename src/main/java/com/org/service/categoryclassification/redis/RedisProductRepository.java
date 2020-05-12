@@ -1,5 +1,6 @@
 package com.org.service.categoryclassification.redis;
 
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,8 @@ public class RedisProductRepository {
 		hashOperations.delete("PRODUCTCLASSIFICATION", referencekey);
 	}
 
-
+	public void flushAll() {
+		RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();
+		connection.flushAll();
+	}
 }

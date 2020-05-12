@@ -24,7 +24,6 @@ public class ProductClassificationController {
 	private List<ProductClassification> productClassificationList;
 	private static final Logger logger = LoggerFactory.getLogger(ProductClassificationController.class);
 
-
 	@RequestMapping(value = { "/getproductclassification" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ProductClassification getProductClassification(@RequestParam("prodref") String prodref) {
@@ -41,12 +40,16 @@ public class ProductClassificationController {
 			logger.info("tagDescription : " + response.getTagdescription());
 			logger.info("classification : " + response.getClassification());
 		} else {
-			this.productClassificationList = this.productClassificationService.getCategoryClass(prodref.trim().toUpperCase());
+			this.productClassificationList = this.productClassificationService
+					.getCategoryClass(prodref.trim().toUpperCase());
 			try {
-				referencekey = ((ProductClassification) this.productClassificationList.get(0)).getReferencekey().toString();
+				referencekey = ((ProductClassification) this.productClassificationList.get(0)).getReferencekey()
+						.toString();
 				name = ((ProductClassification) this.productClassificationList.get(0)).getName().toString();
-				tagDescription = ((ProductClassification) this.productClassificationList.get(0)).getTagdescription().toString();
-				classification = ((ProductClassification) this.productClassificationList.get(0)).getClassification().toString();
+				tagDescription = ((ProductClassification) this.productClassificationList.get(0)).getTagdescription()
+						.toString();
+				classification = ((ProductClassification) this.productClassificationList.get(0)).getClassification()
+						.toString();
 				response.setReferencekey(referencekey);
 				response.setName(name);
 				response.setTagdescription(tagDescription);
@@ -59,9 +62,11 @@ public class ProductClassificationController {
 				logger.info("classification : " + classification);
 			} catch (NullPointerException ex1) {
 				logger.debug("Handeling Exception ex1 : " + ex1.getMessage());
-				referencekey = ((ProductClassification) this.productClassificationList.get(0)).getReferencekey().toString();
+				referencekey = ((ProductClassification) this.productClassificationList.get(0)).getReferencekey()
+						.toString();
 				name = ((ProductClassification) this.productClassificationList.get(0)).getName().toString();
-				classification = ((ProductClassification) this.productClassificationList.get(0)).getClassification().toString();
+				classification = ((ProductClassification) this.productClassificationList.get(0)).getClassification()
+						.toString();
 				response.setReferencekey(referencekey);
 				response.setName(name);
 				response.setTagdescription(tagDescription);
@@ -84,6 +89,21 @@ public class ProductClassificationController {
 				logger.info("name : " + name);
 				logger.info("tagDescription : " + tagDescription);
 				logger.info("classification : " + classification);
+			}
+		}
+		return response;
+	}
+
+	@RequestMapping(value = { "/flushall" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String resetRedis(@RequestParam("auth") String auth) {
+		String response = "null";
+		if (auth.matches("adminuser")) {
+			try {
+				redisProductRepository.flushAll();
+				logger.info("flush all success");
+				response = "success";
+			} catch (Exception e) {
+				logger.info(e.getMessage());
 			}
 		}
 		return response;
